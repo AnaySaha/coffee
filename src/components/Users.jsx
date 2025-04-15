@@ -70,6 +70,7 @@ const Users = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Job</th>
+                            <th>Last Login AT</th>
                             <th>Created At</th>
                         </tr>
                     </thead>
@@ -80,6 +81,7 @@ const Users = () => {
                                 <th>1</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
+                                <td>{user.lastSignInTime}</td>
                                 <td>{user.createdAt}</td>
                                 <td>
                                     <button

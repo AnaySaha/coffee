@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
     const {signInUser} = useContext(AuthContext)
@@ -11,8 +12,28 @@ const SignIn = () => {
         console.log(email, password);
         signInUser(email, password)
         .then(result =>{
-            console.log(result.user)
+            console.log(result.user);
+
+             // update last login time
+        const lastSignInTime = result?.user?.metadata?.lastSignInTime;
+        const loginInfo = { email, lastSignInTime};
+
+        fetch(`http://localhost:5000/users`, {
+          method: 'PATCH',
+          headers: {
+            'content-type': 'application/json'
+          }
         })
+
+
+        .then(res => res.json())
+        .then(data =>{
+          console.log('sign in info updated in db', data)
+          
+        })
+      
+        })
+        
         .catch(error => {
             console.log(error)
         })
@@ -48,6 +69,7 @@ const SignIn = () => {
         <div className="form-control mt-6">
           <button className="btn btn-primary">Sign In</button>
         </div>
+        <p>New to Coffee drinker: <Link to="/signup"></Link></p>
       </form>
     </div>
   </div>
