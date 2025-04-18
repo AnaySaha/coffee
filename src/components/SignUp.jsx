@@ -22,7 +22,19 @@ const SignUp = () => {
           console.log('error', error)
 
           const newUser = {name, email, createdAt}
+          
+          // using axios
 
+          axios.post('http://localhost:5000/user', user)
+          .then(data => {
+            console.log(data.data)
+          })
+          
+          
+          
+          
+          
+          // using fetch
           // save new user info to the database
           fetch('http://localhost:5000/users', {
             method: 'POST',

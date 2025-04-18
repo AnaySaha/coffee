@@ -18,6 +18,14 @@ const SignIn = () => {
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email, lastSignInTime};
 
+// using axios
+
+axios.patch('http://localhost:5000/user', user)
+.then(data => {
+  console.log(data.data)
+})
+
+
         fetch(`http://localhost:5000/users`, {
           method: 'PATCH',
           headers: {
